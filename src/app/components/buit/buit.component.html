@@ -1,0 +1,10 @@
+<div *ngIf="show" id="buit">
+  <ul>
+    <li>
+      <span class="text">Totale buit waarde</span>
+
+      <span *ngIf="buit > 0" class="number" style="color:#D4AF37">{{ buit | currency:'EUR':true}}</span>
+      <span *ngIf="buit === 0" class="number">{{ buit | currency:'EUR':true}}</span>
+    </li>
+  </ul>
+</div>

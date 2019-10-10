@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  WS_ENDPOINT_URL: 'ws://localhost:8081/ws',
+  WS_MESSAGE_TOPIC: '/topic/berichten',
+  WS_TIME_TOPIC: '/topic/tijd',
+  WS_BUIT_TOPIC: '/topic/buit'
 };
 
 /*

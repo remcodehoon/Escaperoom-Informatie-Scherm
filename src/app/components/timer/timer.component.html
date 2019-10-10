@@ -1,0 +1,20 @@
+<div id="timer">
+  <ul>
+    <li>
+      <span class="number">{{ getHours() | number:'2.0-0'}}</span>
+      <span class="text">Uren</span>
+    </li>
+    <li>
+      <span class="number">{{ getMinutes() | number:'2.0-0'}}</span>
+      <span class="text">Minuten</span>
+    </li>
+    <li>
+      <span class="number">{{ getSeconds() | number:'2.0-0'}}</span>
+      <span class="text">Seconden</span>
+    </li>
+  </ul>
+</div>
+
+
+<!--<button (click)="startTimer()">Start Timer</button>-->
+<!--<button (click)="setTimer(0, 0, 10)">Seconds</button>-->
