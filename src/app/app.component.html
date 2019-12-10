@@ -1,3 +1,42 @@
+<audio id="ping" controls style="display: none">
+  <source src="../assets/sounds/ping.mp3" type="audio/mpeg">
+</audio>
+
+<div [style.display]="displayIntro ? 'block' : 'none'" class="video">
+  <video #introVideoPlayer preload="auto">
+    <source src="../assets/videos/intro.mp4" type="video/mp4" />
+    Browser not supported
+  </video>
+</div>
+
+<div [style.display]="displayAlarm ? 'block' : 'none'" class="video">
+  <video #alarmVideoPlayer preload="auto">
+    <source src="../assets/videos/alarm.mp4" type="video/mp4" />
+    Browser not supported
+  </video>
+</div>
+
+<div [style.display]="displayAlarmOff ? 'block' : 'none'" class="video">
+  <video #alarmOffVideoPlayer preload="auto">
+    <source src="../assets/videos/alarm-uit.mp4" type="video/mp4" />
+    Browser not supported
+  </video>
+</div>
+
+<div [style.display]="displayLastMinute ? 'block' : 'none'" class="video">
+  <video #lastMinuteVideoPlayer preload="auto">
+    <source src="../assets/videos/laatste-minuut.mp4" type="video/mp4" />
+    Browser not supported
+  </video>
+</div>
+
+<div [style.display]="displayRedButton ? 'block' : 'none'" class="video">
+  <video #redButtonVideoPlayer preload="auto">
+    <source src="../assets/videos/rode-knop.mp4" type="video/mp4" />
+    Browser not supported
+  </video>
+</div>
+
 <eis-timer></eis-timer>
 
 <div id="componentwrapper">

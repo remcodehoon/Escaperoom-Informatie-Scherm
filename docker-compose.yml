@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  escaperoom-informatiescherm:
+    build: .
+    image: stokperdje/escaperoom-informatiescherm
+    restart: on-failure
+    ports:
+    - 8083:80
+    networks:
+    - escaperoom
+    container_name: escaperoom-informatiescherm
+
+networks:
+  escaperoom:
+    external: true
