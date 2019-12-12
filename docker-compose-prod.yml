@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  escaperoom-informatiescherm:
+    build: .
+    image: stokperdje/escaperoom-informatiescherm
+    restart: on-failure
+    ports:
+    - 8083:80
+    networks:
+    - escaperoom
+    container_name: escaperoom-informatiescherm
+    volumes:
+    - /home/pi/escaperoom/videos:/usr/share/nginx/html/assets/videos
+
+networks:
+  escaperoom:
+    external: true
