@@ -11,7 +11,7 @@ services:
     - escaperoom
     container_name: escaperoom-informatiescherm
     volumes:
-    - /home/pi/escaperoom/videos:/usr/share/nginx/html/assets/videos
+    - /home/stokkeldersrv/escaperoom/videos:/usr/share/nginx/html/assets/videos
 
 networks:
   escaperoom:
