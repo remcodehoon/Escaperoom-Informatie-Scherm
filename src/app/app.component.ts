@@ -82,7 +82,7 @@ export class AppComponent implements AfterViewInit {
 
     this.slotStatusSubscription = this.rxStompService.watch(environment.WS_SLOT_TOPIC).subscribe((stompMessage: StompMessage) => {
       const message = JSON.parse(stompMessage.body) as Status;
-      if (message.status === false) {
+      if (message.status === true) {
         this.displayIntro = true;
         this.introVideoplayer.nativeElement.play();
       }
