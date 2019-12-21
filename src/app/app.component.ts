@@ -67,7 +67,6 @@ export class AppComponent implements AfterViewInit {
 
     this.messageSubscription = this.rxStompService.watch(environment.WS_MESSAGE_TOPIC).subscribe((stompMessage: StompMessage) => {
       const message = JSON.parse(stompMessage.body) as ServerMessage;
-      console.log(message);
       if (message.show) {
         audio.play();
         this.message = message.message;

@@ -3,7 +3,6 @@ import {RxStompService} from '@stomp/ng2-stompjs';
 import {environment} from '../../../environments/environment';
 import {Subscription} from 'rxjs';
 import {Message} from '@stomp/stompjs';
-import {Buit} from '../../shared/buit';
 import {TimeChange} from '../../shared/time-change';
 
 @Component({
@@ -17,7 +16,6 @@ export class TimerComponent implements OnInit {
   private hours: number;
   private minutes: number;
   private seconds: number;
-  // private interval: any = false;
 
   private timeSubscription: Subscription;
 
@@ -28,7 +26,6 @@ export class TimerComponent implements OnInit {
 
     this.timeSubscription = this.rxStompService.watch(environment.WS_TIME_TOPIC).subscribe((message: Message) => {
       const timeChange = JSON.parse(message.body) as TimeChange;
-
       if (timeChange.type === 'SET') {
         this.hours = timeChange.hours;
         this.minutes = timeChange.minutes;
@@ -63,36 +60,5 @@ export class TimerComponent implements OnInit {
   public getSeconds(): number {
     return this.seconds;
   }
-
-  // public startTimer(): void {
-  //   if (!this.interval) {
-  //     this.interval = setInterval(() => {
-  //       if (this.hours >= 1 && this.minutes === 0 && this.seconds === 0) {
-  //         this.hours--;
-  //         this.minutes = 59;
-  //         this.seconds = 59;
-  //       } else if (this.minutes > 0 && this.seconds === 0) {
-  //         this.minutes--;
-  //         this.seconds = 59;
-  //       } else if (this.seconds > 0) {
-  //         this.seconds--;
-  //       } else {
-  //         this.clearTimer();
-  //         // alert('Timer voorbij');
-  //       }
-  //     }, 1000);
-  //   }
-  // }
-
-  // public clearTimer(): void {
-  //   clearInterval(this.interval);
-  //   this.interval = false;
-  // }
-  //
-  // public setTimer(hours: number, minutes: number, seconds: number): void {
-  //   this.hours = hours;
-  //   this.minutes = minutes;
-  //   this.seconds = seconds;
-  // }
 
 }

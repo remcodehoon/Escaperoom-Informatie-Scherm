@@ -8,7 +8,8 @@ import {Buit} from '../../shared/buit';
 @Component({
   selector: 'eis-buit',
   templateUrl: './buit.component.html',
-  styleUrls: ['./buit.component.scss']
+  styleUrls: ['./buit.component.scss'],
+  providers: []
 })
 export class BuitComponent implements OnInit {
 
@@ -19,8 +20,10 @@ export class BuitComponent implements OnInit {
 
   constructor(private rxStompService: RxStompService) {
     this.buitSubscription = this.rxStompService.watch(environment.WS_BUIT_TOPIC).subscribe((message: Message) => {
-      const buit = JSON.parse(message.body) as Buit;
-      this.buit = buit.totaleBuit;
+      const buit: Buit = JSON.parse(message.body) as Buit;
+      if (buit.totaleBuit >= 0) {
+        this.buit = buit.totaleBuit;
+      }
     });
   }
 

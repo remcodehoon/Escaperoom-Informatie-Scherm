@@ -1,5 +1,5 @@
-export class Buit {
+export interface Buit {
 
-  public totaleBuit: number;
+  totaleBuit: number;
 
 }
