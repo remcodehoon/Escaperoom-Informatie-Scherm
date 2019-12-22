@@ -52,8 +52,6 @@ export class AppComponent implements AfterViewInit {
     this.renderer.listen(this.alarmOffVideoplayer.nativeElement, 'ended', () => {
       this.alarmOffVideoplayer.nativeElement.currentTime = 0;
       this.displayAlarmOff = false;
-      this.alarmsound.pause();
-      this.alarmsound.currentTime = 0;
     });
     this.renderer.listen(this.lastMinuteVideoplayer.nativeElement, 'ended', () => {
       this.lastMinuteVideoplayer.nativeElement.currentTime = 0;
@@ -107,6 +105,8 @@ export class AppComponent implements AfterViewInit {
     this.alarmSubscription = this.rxStompService.watch(environment.WS_ALARM_TOPIC).subscribe((stompMessage: StompMessage) => {
       const message = JSON.parse(stompMessage.body) as Status;
       if (message.status === true) {
+        this.alarmsound.pause();
+        this.alarmsound.currentTime = 0;
         this.displayAlarmOff = true;
         this.alarmOffVideoplayer.nativeElement.play();
       }
