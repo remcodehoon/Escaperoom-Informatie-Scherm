@@ -30,6 +30,9 @@ export class AppComponent implements AfterViewInit {
   public displayLastMinute = false;
   public displayRedButton = false;
 
+  public audio = new Audio();
+  public alarmsound = new Audio();
+
   @ViewChild('introVideoPlayer') introVideoplayer: ElementRef;
   @ViewChild('alarmVideoPlayer') alarmVideoplayer: ElementRef;
   @ViewChild('alarmOffVideoPlayer') alarmOffVideoplayer: ElementRef;
@@ -40,6 +43,7 @@ export class AppComponent implements AfterViewInit {
     this.renderer.listen(this.introVideoplayer.nativeElement, 'ended', () => {
       this.introVideoplayer.nativeElement.currentTime = 0;
       this.displayIntro = false;
+      this.alarmsound.play();
     });
     this.renderer.listen(this.alarmVideoplayer.nativeElement, 'ended', () => {
       this.alarmVideoplayer.nativeElement.currentTime = 0;
@@ -48,6 +52,8 @@ export class AppComponent implements AfterViewInit {
     this.renderer.listen(this.alarmOffVideoplayer.nativeElement, 'ended', () => {
       this.alarmOffVideoplayer.nativeElement.currentTime = 0;
       this.displayAlarmOff = false;
+      this.alarmsound.pause();
+      this.alarmsound.currentTime = 0;
     });
     this.renderer.listen(this.lastMinuteVideoplayer.nativeElement, 'ended', () => {
       this.lastMinuteVideoplayer.nativeElement.currentTime = 0;
@@ -61,14 +67,17 @@ export class AppComponent implements AfterViewInit {
 
   constructor(private rxStompService: RxStompService, private renderer: Renderer2) {
 
-    const audio = new Audio();
-    audio.src = '../assets/sounds/ping.mp3';
-    audio.load();
+    this.audio.src = '../assets/sounds/ping.mp3';
+    this.audio.load();
+
+    this.alarmsound = new Audio();
+    this.alarmsound.src = '../assets/sounds/alarm.mp3';
+    this.alarmsound.load();
 
     this.messageSubscription = this.rxStompService.watch(environment.WS_MESSAGE_TOPIC).subscribe((stompMessage: StompMessage) => {
       const message = JSON.parse(stompMessage.body) as ServerMessage;
       if (message.show) {
-        audio.play();
+        this.audio.play();
         this.message = message.message;
         this.showBuit = false;
         this.showMessage = true;
