@@ -12,7 +12,8 @@ export const environment = {
   WS_SENSOR_TOPIC: '/topic/sensor',
   WS_ALARM_TOPIC: '/topic/alarm',
   WS_LASTMINUTE_TOPIC: '/topic/lastminute',
-  WS_BUTTON_TOPIC: '/topic/button'
+  WS_BUTTON_TOPIC: '/topic/button',
+  WS_ALARMSOUND_OFF: '/topic/alarmsound'
 };
 
 /*

@@ -23,6 +23,7 @@ export class AppComponent implements AfterViewInit {
   private alarmSubscription: Subscription;
   private lastMinuteSubscription: Subscription;
   private buttonSubscription: Subscription;
+  private alarmSoundOffSubscription: Subscription;
 
   public displayIntro = false;
   public displayAlarm = false;
@@ -136,6 +137,13 @@ export class AppComponent implements AfterViewInit {
       if (message.status === true) {
         this.displayRedButton = true;
         this.redButtonVideoplayer.nativeElement.play();
+      }
+    });
+
+    this.alarmSoundOffSubscription = this.rxStompService.watch(environment.WS_ALARMSOUND_OFF).subscribe((stompMessage: StompMessage) => {
+      const message = JSON.parse(stompMessage.body) as Status;
+      if (message.status === false) {
+        this.audio.volume = 0;
       }
     });
   }
