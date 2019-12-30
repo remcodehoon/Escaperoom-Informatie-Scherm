@@ -43,7 +43,7 @@ export class AppComponent implements AfterViewInit {
     this.renderer.listen(this.introVideoplayer.nativeElement, 'ended', () => {
       this.introVideoplayer.nativeElement.currentTime = 0;
       this.displayIntro = false;
-      this.alarmsound.volume = 100;
+      this.alarmsound.volume = 1;
     });
     this.renderer.listen(this.alarmVideoplayer.nativeElement, 'ended', () => {
       this.alarmVideoplayer.nativeElement.currentTime = 0;
@@ -109,7 +109,7 @@ export class AppComponent implements AfterViewInit {
       if (message.status === true) {
         this.alarmsound.pause();
         this.alarmsound.currentTime = 0;
-        this.alarmsound.volume = 100;
+        this.alarmsound.volume = 1;
         this.displayAlarmOff = true;
         this.alarmOffVideoplayer.nativeElement.play();
       }
