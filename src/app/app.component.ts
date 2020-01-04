@@ -76,6 +76,7 @@ export class AppComponent implements AfterViewInit {
     this.messageSubscription = this.rxStompService.watch(environment.WS_MESSAGE_TOPIC).subscribe((stompMessage: StompMessage) => {
       const message = JSON.parse(stompMessage.body) as ServerMessage;
       if (message.show) {
+        this.audio.volume = 1;
         this.audio.play();
         this.message = message.message;
         this.showBuit = false;
@@ -143,7 +144,7 @@ export class AppComponent implements AfterViewInit {
     this.alarmSoundOffSubscription = this.rxStompService.watch(environment.WS_ALARMSOUND_OFF).subscribe((stompMessage: StompMessage) => {
       const message = JSON.parse(stompMessage.body) as Status;
       if (message.status === false) {
-        this.audio.volume = 0;
+        this.alarmsound.volume = 0;
       }
     });
   }
